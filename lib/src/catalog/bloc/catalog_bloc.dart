@@ -6,11 +6,14 @@ import 'package:mini_pos_checkout/src/utils/json_reader.dart';
 part 'catalog_event.dart';
 part 'catalog_state.dart';
 
+
 class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
   CatalogBloc() : super(CatalogInitial()) {
     on<LoadCatalog>(_onLoadCatalog);
   }
 
+  /// Handles [LoadCatalog] by emitting [CatalogLoading], fetching the catalogs,
+  /// and then emitting [CatalogLoaded] with the fetched items.
   Future<void> _onLoadCatalog(LoadCatalog event, Emitter<CatalogState> emit) async {
     emit(CatalogLoading());
     final items = await fetchCatalogs();

@@ -34,6 +34,7 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     'totals': state.totals.toJson(),
   };
 
+  /// Handles [AddItem] by adding or updating the item in the cart.
   void _onAddItem(AddItem event, Emitter<CartState> emit) {
     var lines = [...state.lines];
     final lineIndex = lines.indexWhere((l) => l.item.id == event.item.id);
@@ -46,12 +47,14 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     emit(CartState(lines: lines, totals: computeTotals(lines)));
   }
 
+  /// Handles [RemoveItem] by removing the item from the cart.
   void _onRemoveItem(RemoveItem event, Emitter<CartState> emit) {
     var lines = [...state.lines];
     lines.removeWhere((l) => l.item == event.item);
     emit(CartState(lines: lines, totals: computeTotals(lines)));
   }
 
+  /// Handles [ChangeQty] by updating the quantity of the item in the cart.
   void _onChangeQty(ChangeQty event, Emitter<CartState> emit) {
     var lines = [...state.lines];
     final lineIndex = lines.indexWhere((l) => l.item.id == event.item.id);
@@ -66,6 +69,7 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     }
   }
 
+  /// Handles [ChangeDiscount] by updating the discount of the item in the cart.
   void _onChangeDiscount(ChangeDiscount event, Emitter<CartState> emit) {
     var lines = [...state.lines];
     final lineIndex = lines.indexWhere((l) => l.item.id == event.item.id);
@@ -76,6 +80,7 @@ class CartBloc extends HydratedBloc<CartEvent, CartState> {
     }
   }
 
+  /// Handles [ClearCart] by clearing the cart.
   void _onClearCart(ClearCart event, Emitter<CartState> emit) {
     emit(CartState.initial());
   }

@@ -1,5 +1,9 @@
 import 'package:equatable/equatable.dart';
 
+/// Catalog item model.
+/// - id: unique identifier for the item
+/// - name: name of the item
+/// - price: price of the item
 class CatalogItem extends Equatable {
   final String id;
   final String name;

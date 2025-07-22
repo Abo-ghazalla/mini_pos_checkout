@@ -2,6 +2,14 @@ import 'package:mini_pos_checkout/src/cart/models.dart';
 
 const double vatRate = 0.15;
 
+/// Compute the totals from a list of [CartLine] items.
+///
+/// This function goes through all the lines, sums up their net values, then
+/// calculates the vat and the grand total. The vat rate is 15% of the
+/// subtotal.
+///
+/// The vat and grand total are calculated to two decimal places to avoid
+/// any rounding errors.
 Totals computeTotals(List<CartLine> lines) {
   double subtotal = 0;
   for (var line in lines) {

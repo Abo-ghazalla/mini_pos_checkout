@@ -43,7 +43,6 @@ class CartLine extends Equatable {
 class Totals extends Equatable {
   final double subtotal;
   final double vat;
-  // final double discount;
   final double grandTotal;
 
   const Totals({required this.subtotal, required this.vat, required this.grandTotal});

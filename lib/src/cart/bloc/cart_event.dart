@@ -1,5 +1,14 @@
 part of 'cart_bloc.dart';
 
+/// Events that can be added to the [CartBloc].
+///
+/// This sealed class can be one of the following events:
+///
+/// - [AddItem]: Add an item to the cart.
+/// - [RemoveItem]: Remove an item from the cart.
+/// - [ChangeQty]: Update the quantity of an item in the cart.
+/// - [ChangeDiscount]: Update the discount of an item in the cart.
+/// - [ClearCart]: Clear the cart.
 sealed class CartEvent extends Equatable {
   const CartEvent();
 
@@ -46,6 +55,3 @@ final class ChangeDiscount extends CartEvent {
 }
 
 final class ClearCart extends CartEvent {}
-
-
-
