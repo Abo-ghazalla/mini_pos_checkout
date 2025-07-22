@@ -12,10 +12,17 @@ const double vatRate = 0.15;
 /// any rounding errors.
 Totals computeTotals(List<CartLine> lines) {
   double subtotal = 0;
+  double totalDiscount = 0;
   for (var line in lines) {
     subtotal += line.lineNet;
+    totalDiscount += line.item.price * line.quantity * line.discount;
   }
   final vat = double.parse((subtotal * vatRate).toStringAsFixed(2));
   final grand = double.parse((subtotal + vat).toStringAsFixed(2));
-  return Totals(subtotal: double.parse(subtotal.toStringAsFixed(2)), vat: vat, grandTotal: grand);
+  return Totals(
+    subtotal: double.parse(subtotal.toStringAsFixed(2)),
+    vat: vat,
+    grandTotal: grand,
+    discount: double.parse(totalDiscount.toStringAsFixed(2)),
+  );
 }

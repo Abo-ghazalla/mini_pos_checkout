@@ -44,17 +44,19 @@ class Totals extends Equatable {
   final double subtotal;
   final double vat;
   final double grandTotal;
+  final double discount;
 
-  const Totals({required this.subtotal, required this.vat, required this.grandTotal});
+  const Totals({required this.subtotal, required this.vat, required this.grandTotal, this.discount = 0.0});
 
   @override
-  List<Object?> get props => [subtotal, vat, grandTotal];
+  List<Object?> get props => [subtotal, vat, grandTotal, discount];
 
   factory Totals.fromJson(Map<String, dynamic> json) {
     return Totals(
       subtotal: (json['subtotal'] as num).toDouble(),
       vat: (json['vat'] as num).toDouble(),
       grandTotal: (json['grandTotal'] as num).toDouble(),
+      discount: (json['discount'] as num?)?.toDouble() ?? 0.0,
     );
   }
 
@@ -63,6 +65,7 @@ class Totals extends Equatable {
       'subtotal': subtotal,
       'vat': vat,
       'grandTotal': grandTotal,
+      'discount': discount,
     };
   }
 }
